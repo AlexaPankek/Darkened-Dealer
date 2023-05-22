@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FirstPersonMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float mouseSensitivity = 2f;

@@ -16,14 +16,13 @@ public class PauseMenu : MonoBehaviour
         // Check for pause input (e.g., Esc key)
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-           if (Input.GetKeyDown(KeyCode.Escape))
+            if (isPaused)
             {
-                Debug.Log("Escape key pressed");
+                ResumeGame();
             }
             else
             {
                 PauseGame();
-                Debug.Log("resume game");
             }
         }
     }

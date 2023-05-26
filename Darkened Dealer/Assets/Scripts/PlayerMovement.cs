@@ -77,4 +77,6 @@ public class PlayerMovement : MonoBehaviour
     }
     currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
     }
+
+    
 }

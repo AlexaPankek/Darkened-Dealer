@@ -4,27 +4,11 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
 
-    private bool isPaused;
+    public bool isPaused;
 
     private void Start()
     {
         ResumeGame();
-    }
-
-    private void Update()
-    {
-        // Check for pause input (e.g., Esc key)
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
-        }
     }
 
     public void PauseGame()

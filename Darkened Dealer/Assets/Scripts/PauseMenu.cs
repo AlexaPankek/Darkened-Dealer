@@ -3,11 +3,13 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
+    public PlayerMovement playerMovement; // Reference to the PlayerMovement script
 
     public bool isPaused;
 
     private void Start()
     {
+        playerMovement = FindObjectOfType<PlayerMovement>(); // Find the PlayerMovement component
         ResumeGame();
     }
 
@@ -18,6 +20,9 @@ public class PauseMenu : MonoBehaviour
         pauseMenuPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        // Disallow player rotation
+        playerMovement.AllowRotation(false);
     }
 
     public void ResumeGame()
@@ -27,6 +32,9 @@ public class PauseMenu : MonoBehaviour
         pauseMenuPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        // Allow player rotation
+        playerMovement.AllowRotation(true);
     }
 
     public void QuitGame()

@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
     public PlayerMovement playerMovement; // Reference to the PlayerMovement script
+    public Button MainMenuButton;
 
     public bool isPaused;
 
@@ -11,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     {
         playerMovement = FindObjectOfType<PlayerMovement>(); // Find the PlayerMovement component
         ResumeGame();
+        MainMenuButton.onClick.AddListener(MainMenu);
     }
 
     public void PauseGame()
@@ -36,7 +41,11 @@ public class PauseMenu : MonoBehaviour
         // Allow player rotation
         playerMovement.AllowRotation(true);
     }
-
+    public void MainMenu()
+    {
+        // Implement the logic to load the main menu scene here
+        SceneManager.LoadScene("MainMenu"); // Replace "MainMenu" with the actual name of your main menu scene
+    }
     public void QuitGame()
     {
         // Implement your quit game functionality here

@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     // Pause functionality
     private bool isPaused;
 
+     public float interactRange = 2f; // The range at which the player can interact with objects
+    private DoorController currentDoor; // Reference to the currently interactable door
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -37,6 +40,14 @@ public class PlayerMovement : MonoBehaviour
         staminaBar = FindObjectOfType<StaminaBar>();
         staminaBar.SetMaxStamina(maxStamina);
         currentStamina = maxStamina;
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (currentDoor != null)
+            {
+                currentDoor.OpenDoor();
+            }
+        }
     }
 
     public void AllowRotation(bool allow)
@@ -104,6 +115,27 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Door"))
+        {
+            // Check if the door is within interact range
+            float distance = Vector3.Distance(transform.position, other.transform.position);
+            if (distance <= interactRange)
+            {
+                currentDoor = other.GetComponent<DoorController>();
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Door"))
+        {
+            currentDoor = null;
         }
     }
 }
